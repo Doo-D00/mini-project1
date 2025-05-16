@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HODU</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            line-height: 20px;
+        }
+
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        a {
+            display: inline-block;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+        }
+
+        img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .icon {
+            display: inline-block;
+            position: absolute;
+            overflow: hidden;
+            width: 1px;
+            height: 1px;
+            border: 0;
+            clip-path: inset(50%);
+        }
+
+        .btn-common {
+            padding: 15px 30px;
+            font-size: 16px;
+            font-weight: 700;
+            background-color: #D97652;
+            border-radius: 40px;
+            color: #fff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            height: 902px;
+            flex-direction: column;
+            background-color: #F2E9D8;
+        }
+        .box-navi {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        nav > ul {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .box-headerinfo {
+            background: url(./img/box-cat.png) bottom right no-repeat;
+            height: 800px;
+            margin: 0 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+        }
+
+        .box-headerinfo > .txt-header-title {
+            font-size: 48px;
+            line-height: 60px;
+            font-weight: 700;
+        }
+
+        .box-headerinfo > .txt-header {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        .cont-main {
+            display: flex;
+            flex-direction: column;
+            max-width: 1280px;
+            margin: 80px auto 0;
+        }
+
+        .cont-main .main-intro figure {
+            display: flex;
+            align-items: center;
+            gap: 110px;
+        }
+
+        .cont-main .main-intro img {
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.25);
+            border-radius: 30px;
+        }
+
+        .main-intro img {
+            width: 800px;
+            height: 500px;
+            border-radius: 30px;
+            box-shadow: 10px 10px 0px rgba(0, 0, 0, 0.25);
+        }
+
+        .main-intro figcaption h2 {
+            font-size: 36px;
+            line-height: 45px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+
+        .main-intro figcaption p {
+            font-size: 16px;
+            line-height: 20px;
+        }
+
+        .cont-main .main-photos {
+            margin: 120px 0 68px;
+            padding-bottom: 80px;
+            border-bottom: 1px solid #C4C4C4;
+        }
+
+        .main-photos .txt-photos-title {
+            font-size: 48px;
+            line-height: 60px;
+            margin-bottom: 40px;
+            font-weight: 700;
+            color: #D97652;
+            text-align: center;
+        }
+        .main-photos .txt-photos {
+            text-align: center;
+        }
+
+        .main-photos .txt-photos strong {
+            color: #D97652;
+        }
+
+        .main-photos .list-photos {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            margin: 88px 0 100px;
+            gap: 72px;
+        }
+
+        .main-photos .list-photos button {
+            overflow: hidden;
+            border-radius: 30px;
+            box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.25);
+        }
+
+        .main-photos .box-extends {
+            text-align: center;
+            font-weight: 400;
+            font-size: 24px;
+        }
+
+        .main-photos .box-extends .txt-info {
+            margin-bottom: 40px;
+        }
+
+        .box-extends .end {
+            display: none;
+        }
+        
+        .cont-main .main-map {
+            margin: 68px 0 80px;
+        }
+
+        .main-map h2 {
+            font-size: 36px;
+            line-height: 45px;
+            margin-bottom: 20px;
+        }
+
+        .main-map address {
+            margin-bottom: 40px;
+            font-style: normal;
+            color: #606367;
+        }
+
+        .main-map #map {
+            height: 520px;
+            background-color: black;
+            border-radius: 12px;
+        }
+
+        .widget-subscribe {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px 58px;
+            border-radius: 30px;
+            background-color: #263140;
+            color: #fff;
+        }
+        .widget-subscribe h3 {
+            font-size: 36px;
+            line-height: 45px;
+            font-weight: 700;
+            margin-bottom: 18px;
+        }
+
+        .widget-subscribe p {
+            font-size: 14px;
+            line-height: 18px;
+        }
+
+        .widget-subscribe .form-subscribe {
+            position: relative;
+            width: 530px;
+        }
+
+        .widget-subscribe .form-subscribe::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 30px;
+            width: 24px;
+            height: 24px;
+            background: url('./img/mail.svg');
+            z-index: 1;
+        }
+
+        .widget-subscribe .form-subscribe input {
+            position: relative;
+            width: 100%;
+            padding: 20px 135px 20px 60px;
+            overflow: hidden;
+            border-radius: 60px;
+            border: none;
+            box-sizing: border-box;
+        }
+
+        .widget-subscribe .form-subscribe .btn-common {
+            position: absolute;
+            top: 50%;
+            right: 5px;
+            transform: translateY(-50%);
+        }
+
+        /* footer */
+        .cont-footer::before {
+            content: '';
+            display: block;
+            background: url('./img/img_5.jpg') center/cover no-repeat;
+            width: 100%;
+            height: 340px;
+            margin-top: -100px;
+        }
+
+        .cont-footer .box-footer {
+            max-width: 1280px;
+            padding: 45px 0px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .cont-footer .list-link-sns {
+            display: flex;
+            gap: 20px;
+        }
+
+        .cont-footer .list-link-sns a {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: url(./img/blog.svg) #F29D52 center no-repeat;
+        }
+
+        .cont-footer .list-link-sns .link-insta {
+            background-image: url(/img/instagram.svg);
+        }
+
+        .cont-footer .list-link-sns .link-facebook {
+            background-image: url(./img/facebook.svg);
+        }
+
+        .cont-footer .list-link-sns .link-youtube {
+            background-image: url(./img/youtube.svg);
+        }
+
+        .link-top {
+            position: fixed;
+            bottom: 184px;
+            right: 50px;
+            width: 50px;
+            height: 50px;
+            border: 1px solid #c4c4c4;
+            border-radius: 50%;
+            background: url(./img/top-btn.svg) white center no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="cont-header" id="headerMain">
+        <div class="box-navi">
+            <h1><img src="./img/logo.svg" alt="HODU"></h1>
+            <nav>
+                <ul>
+                    <li><a href="#none">Home</a></li>
+                    <li><a href="#none">About</a></li>
+                    <li><a href="#none">Support</a></li>
+                    <li><a href="#none" class="btn-common">Download</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="box-headerinfo">
+            <h2 class="txt-header-title">Lorem ipsum dolor sit.<br>
+            dummy text of the printing and</h2>
+            <p class="txt-header">Lorem ipsum dolor sit amet consectetur adipisicing elit.<br>
+            Sint quia voluptatum dolore nisi, perferendis labore deleniti, nobis illum a, laborum provident.</p>
+            <a href="#none" class="btn-common">Download</a>
+        </div>
+    </header>
+    <main class="cont-main">
+        <section class="main-intro">
+            <figure>
+                <img src="./img/img_4.jpg" alt="왼쪽 보는 고양이">
+                <figcaption>
+                    <h2>Lorem ipsum dolor sit amet consectetur</h2>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                </figcaption>
+            </figure>
+        </section>
+        <section class="main-photos">
+            <h2 class="txt-photos-title">dummy text of the printing an dummy</h2>
+            <p class="txt-photos">Lorem ipsum is simply <strong>dummy text</strong> of the printing and typesetting industry.<br>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad quod rem distinctio, laudantium dolorum voluptate! Aperiam, possimus accusamus corrupti inventore distinctio iste ipsum? Fugiat voluptas culpa necessitatibus, velit sit nulla. </p>
+            <ul class="list-photos">
+                <li><button type="button"><img src="./img/img_1.jpg" alt="캣타워 고양이"></button></li>
+                <li><button type="button"><img src="./img/img_2.jpg" alt="콘센트 고양이"></button>
+                </li>
+                <li><button type="button"><img src="./img/img_3.jpg" alt="째려보는 고양이"></button></li>
+            </ul>
+            <div class="box-extends">
+                <p class="txt-info">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quibusdam quas laboriosam corporis facilis nobis, illo repellat praesentium iure necessitatibus blanditiis fugiat numquam. Tempore, nemo vero ullam dolore odit molestiae!
+                </p>
+                <button class="btn-common more">Learn More</button>
+            </div>
+        </section>
+        <article class="widget-subscribe">
+            <div class="box-txt">
+                <h3>Subscribe to our Blog post</h3>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. 
+                    Lorem Ipsum has been the industry's standard dummy text 
+                </p>
+            </div>
+            <form class="form-subscribe">
+                <label for="inpEmail" class="icon">구독 이메일 입력창</label>
+                <input type="email" id="inpEmail" required placeholder="Enter your email address">
+                <button type="submit" class="btn-common">Subscribe</button>
+            </form>
+        </article>
+    </main>
+    <footer class="cont-footer">
+        <div class="box-footer-bg"></div>
+        <div class="box-footer">
+            <h2><a href="#none"><img src="images/Logo_hodu.svg" alt="HODU"></a></h2>
+            <ul class="list-link-sns">
+                <li><a href="#none" class="link-blog"><span class="icon">블로그</span></a></li>
+                <li><a href="#none" class="link-insta"><span class="icon">인스타그램</span></a></li>
+                <li><a href="#none" class="link-facebook"><span class="icon">페이스북</span></a></li>
+                <li><a href="#none" class="link-youtube"><span class="icon">유튜브</span></a></li>
+            </ul>
+        </div>
+    </footer>
+    <a href="#headerMain" class="link-top"><sapn class="icon">최상단으로 이동하기</sapn></a>
+</body>
+
+</html>
